@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fredbear's Family Diner | A Fazbear Entertainment Subsidiary</title>
+    <style>
+        body {
+            background: url('https://www.transparenttextures.com/patterns/old-wall.png');
+            font-family: "Comic Sans MS", cursive, sans-serif;
+            color: #000;
+            text-align: center;
+        }
+
+        .container {
+            width: 760px;
+            margin: 0 auto;
+            background-color: #fff8e1;
+            padding: 20px;
+            border: 3px dashed #b5651d;
+            box-shadow: 5px 5px 20px #999;
+        }
+
+        h1 {
+            font-size: 48px;
+            color: #990000;
+            text-shadow: 2px 2px #ffc;
+        }
+
+        h2 {
+            font-size: 22px;
+            color: #663300;
+        }
+
+        p {
+            text-align: left;
+            line-height: 1.4;
+        }
+
+        .poster {
+            margin: 20px 0;
+            border: 4px ridge #444;
+            padding: 10px;
+            background-color: #fff;
+        }
+
+        .security-button {
+            margin-top: 30px;
+            border-top: 2px solid #ccc;
+            padding-top: 20px;
+        }
+
+        .security-button button {
+            background-color: #ff0000;
+            color: #ffff00;
+            font-family: 'Courier New', monospace;
+            padding: 10px 25px;
+            font-size: 18px;
+            border: 2px outset #000;
+            cursor: pointer;
+        }
+
+        .security-button button:hover {
+            background-color: #cc0000;
+        }
+
+        marquee {
+            color: #990000;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .blinking {
+            animation: blinker 1s linear infinite;
+        }
+
+        @keyframes blinker {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        .lore-link {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+        .lore-link a {
+            color: #990000;
+            text-decoration: underline;
+        }
+
+        .lore-link a:hover {
+            color: #660000;
+        }
+    </style>
+</head>
+<body>
+<marquee class="blinking">WELCOME TO FREDBEAR'S FAMILY DINER - ESTABLISHED BY FAZBEAR ENTERTAINMENT, 1983</marquee>
+<div class="container">
+    <h1>Fredbear's Family Diner</h1>
+    <h2>A Fazbear Entertainment Subsidiary</h2>
+    <div class="poster">
+        <img src="fnaf.webp" alt="Fredbear" width="220">
+    </div>
+    <p>
+        Welcome to Fredbear's Family Diner! As one of the earliest family entertainment centers developed by Fazbear
+        Entertainment, Fredbear's offered a magical experience for children and adults alike. Founded in 1983, our
+        beloved animatronic characters, Fredbear and Spring Bonnie, performed live music and hosted parties every day of
+        the week.
+    </p>
+    <p>
+        Fredbear's Family Diner was built on the promise of creating a safe, fun, and interactive dining experience. It
+        laid the groundwork for future developments such as Freddy Fazbear's Pizza, which has since expanded across the
+        country under the guidance of Fazbear Entertainment's corporate leadership.
+    </p>
+    <p>
+        Safety is our top priority. While the location is no longer open to the public, we continue to maintain the
+        facility and invest in ongoing security and preservation as part of our historical division. All operations are
+        in full compliance with Fazbear Entertainment standards and guidelines.
+    </p>
+
+    <div class="lore-link">
+        <p>Curious about the full story? <a href="/lore-page">Discover the Fazbear Lore here</a>.</p>
+    </div>
+
+    <div class="security-button">
+        <h2 class="blinking">Now Hiring: Night Security Personnel</h2>
+        <p>As part of Fazbear Entertainment's legacy protection initiative, we're seeking responsible individuals to
+            monitor and maintain our legacy locations overnight. Prior security experience preferred but not
+            required.</p>
+        <form action="ERROR" method="get">
+            <button onclick="alert('Thank you for applying. Your information has been forwarded to Fazbear Entertainment HR.')">
+                Apply Now
+            </button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

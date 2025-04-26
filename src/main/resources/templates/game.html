@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Golden Freddy Encounter</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-color: black;
+            font-family: 'Courier New', monospace;
+            color: #fdd835;
+            overflow: hidden;
+        }
+        #game-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        #light {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at top center, rgba(255, 255, 153, 0.5) 0%, rgba(0, 0, 0, 0.85) 60%);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 1s ease-in;
+            animation: flicker 2s infinite;
+        }
+        @keyframes flicker {
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+                opacity: 1;
+            }
+            20%, 22%, 24%, 55% {
+                opacity: 0.8;
+            }
+        }
+        #freddy {
+            display: none;
+            max-height: 60vh;
+            animation: idle 3s infinite;
+        }
+        @keyframes idle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        form {
+            width: 60%;
+            position: absolute;
+            bottom: 50px;
+        }
+        #text {
+            width: 100%;
+            padding: 20px;
+            font-size: 24px;
+            background-color: black;
+            color: #fdd835;
+            border: 2px solid #fdd835;
+        }
+        #freddy-response {
+            position: absolute;
+            top: 40%;
+            width: 100%;
+            text-align: center;
+            font-size: 28px;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .fade-out {
+            animation: fadeOut 0.5s ease-in-out 8s forwards;
+        }
+
+        @keyframes fadeOut {
+            to { opacity: 0; }
+        }
+        @keyframes freddyFadeIn {
+            0% { opacity: 0; transform: scale(1.05); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        #freddy.fade-in {
+            display: block;
+            animation: freddyFadeIn 2s ease-out forwards;
+            opacity: 0;
+        }
+        #freddy.shake {
+            animation: shake 0.5s;
+            animation-iteration-count: 6;
+        }
+
+        @keyframes shake {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            10% { transform: translate(-1px, -2px) rotate(-1deg); }
+            20% { transform: translate(-3px, 0px) rotate(1deg); }
+            30% { transform: translate(3px, 2px) rotate(0deg); }
+            40% { transform: translate(1px, -1px) rotate(1deg); }
+            50% { transform: translate(-1px, 2px) rotate(-1deg); }
+            60% { transform: translate(-3px, 1px) rotate(0deg); }
+            70% { transform: translate(3px, 1px) rotate(-1deg); }
+            80% { transform: translate(-1px, -1px) rotate(1deg); }
+            90% { transform: translate(1px, 2px) rotate(0deg); }
+            100% { transform: translate(1px, -2px) rotate(-1deg); }
+        }
+
+        #year1987 {
+            position: absolute;
+            top: 30%;
+            width: 100%;
+            text-align: center;
+            font-size: 72px;
+            color: red;
+            font-weight: bold;
+            animation: flash 0.5s alternate infinite;
+            display: none;
+        }
+
+        @keyframes flash {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+<div id="game-container">
+    <div id="light"></div>
+    <img id="freddy" src="Gf2.webp" alt="Golden Freddy">
+    <form action="/speak" method="post">
+        <input type="text" id="text" name="text" placeholder="Speak...">
+    </form>
+    <div id="freddy-response"></div>
+    <div id="year1987">ENDPOINT : /1987</div>
+</div>
+
+<script th:inline="javascript">
+    const freddy = document.getElementById('freddy');
+    const light = document.getElementById('light');
+    const responseBox = document.getElementById('freddy-response');
+    const year1987 = document.getElementById('year1987');
+
+    const backendResponse = /*[[${session.response}]]*/ '';
+    const trigger1987 = /*[[${session.trigger1987}]]*/ false;
+
+    function typeText(element, text, speed = 50) {
+        let i = 0;
+        element.textContent = '';
+        element.style.opacity = 1;
+        function typing() {
+            if (i < text.length) {
+                element.textContent += text.charAt(i);
+                i++;
+                setTimeout(typing, speed);
+            }
+        }
+        typing();
+        element.classList.remove('fade-out');
+        void element.offsetWidth;
+        element.classList.add('fade-out');
+    }
+
+    if (!backendResponse || backendResponse === 'null') {
+        setTimeout(() => {
+            light.style.opacity = 1;
+            freddy.classList.add('fade-in');
+        }, 2000);
+    } else {
+        freddy.style.display = 'block';
+        freddy.style.opacity = 1;
+        typeText(responseBox, backendResponse);
+    }
+
+    if (trigger1987) {
+        year1987.style.display = 'block';
+        freddy.classList.add('shake');
+        setTimeout(() => {
+            window.location.href = '/';
+        }, 3000);
+    }
+</script>
+</body>
+</html>
