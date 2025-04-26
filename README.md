@@ -2,7 +2,7 @@
 
 A simple Java Spring Boot web application where you can chat with Golden Freddy from the FNAF.
 
-Live demo: [Google Cloud Run Link](https://fnf-413057889128.us-central1.run.app)
+Live demo: [Google Cloud Run Link]([https://fnf-413057889128.us-central1.run.app](https://fnf-413057889128.us-central1.run.app))
 
 ---
 
