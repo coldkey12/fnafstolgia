@@ -1,5 +1,7 @@
 package kz.don.lbp2_nostalgia.config;
 
+import jakarta.servlet.http.HttpSession;
+import kz.don.lbp2_nostalgia.model.chatgpt.Output;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

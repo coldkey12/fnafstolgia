@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
   <title>FNaF Lore Archives | Uncover the Mystery</title>
   <style>
@@ -80,6 +80,42 @@
       width: 100%;
       display: block;
     }
+
+    /* Lore Result Box */
+    .lore-result {
+      margin-top: 30px;
+      background-color: #fff;
+      border: 2px dashed #990000;
+      padding: 20px;
+      text-align: left;
+      box-shadow: 2px 2px 10px #888;
+    }
+
+    .lore-entry {
+      margin-bottom: 20px;
+    }
+
+    .lore-entry img {
+      width: 120px;
+      height: auto;
+      float: left;
+      margin-right: 20px;
+      border: 2px solid #663300;
+      background-color: #fff8e1;
+    }
+
+    .lore-entry h3 {
+      margin: 0;
+      color: #990000;
+    }
+
+    .lore-entry p {
+      margin: 5px 0 0 0;
+    }
+
+    .clear {
+      clear: both;
+    }
   </style>
 </head>
 <body>
@@ -88,10 +124,22 @@
   <h2>Welcome to the Dark World of Fazbear Entertainment</h2>
 
   <div class="search-bar">
-    <input type="text" id="searchText" name="searchText" placeholder="Search animatronics, locations, or events...">
     <form action="/search-info" method="post">
+      <input type="text" id="searchText" name="searchText" placeholder="Search animatronics, locations, or events...">
       <button type="submit">Search</button>
     </form>
+  </div>
+
+  <div class="lore-result" th:if="${responseLore != null}">
+    <h2>Search Result:</h2>
+
+    <div class="lore-entry">
+      <img th:src="${responseLore.getPhotoLink()}" th:alt="${responseLore.getName()}">
+      <h3 th:text="${responseLore.getName()}">Character Name</h3>
+      <p th:text="${responseLore.getDescription()}">Character Description</p>
+      <div class="clear"></div>
+    </div>
+
   </div>
 
   <p>
