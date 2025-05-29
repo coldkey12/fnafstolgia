@@ -1,4 +1,4 @@
-# Chat with Golden Freddy
+# Chat with Golden Freddy (NFAC2025 TOP 4%)
 
 A simple Java Spring Boot web application where you can chat with Golden Freddy from the FNAF.
 
